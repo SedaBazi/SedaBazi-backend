@@ -19,6 +19,15 @@ namespace SedaBazi.Application.Services.Users.Commands.LoginUser
         {
             var user = userManager.FindByNameAsync(request.Email).Result;
 
+            if (user == null)
+            {
+                return new ResultDto
+                {
+                    IsSuccess = false,
+                    Message = "Email doesn't exist."
+                };
+            }
+
             signInManager.SignOutAsync();
             
             var result = signInManager.PasswordSignInAsync(user, request.Password, request.IsPersistent, true).Result;
@@ -35,7 +44,7 @@ namespace SedaBazi.Application.Services.Users.Commands.LoginUser
             return new ResultDto
             {
                 IsSuccess = false,
-                Message = "username and password don't match."
+                Message = "Email and password don't match."
             };
         }
     }

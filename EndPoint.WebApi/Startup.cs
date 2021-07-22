@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using SedaBazi.Application.Interfaces.Contexts;
 using SedaBazi.Application.Services.Users.Commands.RegisterUser;
 using SedaBazi.Domain.Entities.Users;
@@ -28,10 +27,6 @@ namespace EndPoint.WebApi
             services.AddDbContext<DataBaseContext>(p => p.UseSqlServer(@"Data Source=DESKTOP-L5RR2V4; Initial Catalog=Test2; Integrated Security=True;"));
 
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "EndPoint.WebApi", Version = "v1" });
-            });
 
             services.AddScoped<IDataBaseContext, DataBaseContext>();
             services.AddScoped<IRegisterUserService, RegisterUserService>();
@@ -47,8 +42,6 @@ namespace EndPoint.WebApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "EndPoint.WebApi v1"));
             }
 
             app.UseHttpsRedirection();

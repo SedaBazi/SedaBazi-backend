@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SedaBazi.Application.Interfaces.Contexts;
+using SedaBazi.Application.Services.Users.Commands.LoginUser;
+using SedaBazi.Application.Services.Users.Commands.LogoutUser;
 using SedaBazi.Application.Services.Users.Commands.RegisterUser;
 using SedaBazi.Domain.Entities.Users;
 using SedaBazi.Persistence.Contexts;
@@ -30,6 +32,8 @@ namespace EndPoint.WebApi
 
             services.AddScoped<IDataBaseContext, DataBaseContext>();
             services.AddScoped<IRegisterUserService, RegisterUserService>();
+            services.AddScoped<ILoginUserService, LoginUserService>();
+            services.AddScoped<ILogoutUserService, LogoutUserService>();
 
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<DataBaseContext>()

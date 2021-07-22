@@ -8,9 +8,13 @@ namespace SedaBazi.Application.Services.Users.Commands.RegisterUser
     public class RegisterUserService : IRegisterUserService
     {
         private readonly UserManager<User> userManager;
+        private readonly SignInManager<User> signInManager;
 
-        public RegisterUserService(UserManager<User> userManager) =>
+        public RegisterUserService(UserManager<User> userManager, SignInManager<User> signInManager)
+        {
             this.userManager = userManager;
+            this.signInManager = signInManager;
+        }
 
         public ResultDto Execute(RequestRegisterUserDto request)
         {
@@ -21,11 +25,13 @@ namespace SedaBazi.Application.Services.Users.Commands.RegisterUser
                 Email = request.Email,
                 UserName = request.Email
             };
-
+            
             var result = userManager.CreateAsync(user, request.Password).Result;
 
             if (result.Succeeded)
             {
+                signInManager.SignOutAsync();
+
                 return new ResultDto
                 {
                     IsSuccess = true,

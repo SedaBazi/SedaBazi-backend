@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SedaBazi.Application.Interfaces.Contexts;
+using SedaBazi.Application.Services.Email;
+using SedaBazi.Application.Services.Users.Commands.ForgotPassword;
 using SedaBazi.Application.Services.Users.Commands.LoginUser;
 using SedaBazi.Application.Services.Users.Commands.LogoutUser;
 using SedaBazi.Application.Services.Users.Commands.RegisterUser;
@@ -34,6 +36,8 @@ namespace EndPoint.WebApi
             services.AddScoped<IRegisterUserService, RegisterUserService>();
             services.AddScoped<ILoginUserService, LoginUserService>();
             services.AddScoped<ILogoutUserService, LogoutUserService>();
+            services.AddScoped<IForgotPasswordService, ForgotPasswordService>();
+            services.AddScoped<IEmailService, EmailService>();
 
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<DataBaseContext>()

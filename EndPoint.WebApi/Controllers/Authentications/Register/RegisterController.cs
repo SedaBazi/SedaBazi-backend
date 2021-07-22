@@ -13,12 +13,6 @@ namespace EndPoint.WebApi.Controllers.Authentications.Register
         public RegisterController(IRegisterUserService registerUserService) =>
             this.registerUserService = registerUserService;
 
-        [HttpGet]
-        public ActionResult<string> Register()
-        {
-            return "Hello";
-        }
-
         [HttpPost]
         public ActionResult<ResultDto> Register([FromBody] RegisterDto registerDto)
         {

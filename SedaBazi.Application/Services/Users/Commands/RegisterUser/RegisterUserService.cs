@@ -14,7 +14,7 @@ namespace SedaBazi.Application.Services.Users.Commands.RegisterUser
 
         public ResultDto Execute(RequestRegisterUserDto request)
         {
-            var user = new User()
+            var user = new User
             {
                 FirstName = request.FirstName,
                 LastName = request.LastName,

@@ -1,16 +1,15 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using SedaBazi.Application.Interfaces.Contexts;
+using SedaBazi.Application.Services.Users.Commands.RegisterUser;
+using SedaBazi.Domain.Entities.Users;
+using SedaBazi.Persistence.Contexts;
 
 namespace EndPoint.WebApi
 {
@@ -26,12 +25,20 @@ namespace EndPoint.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<DataBaseContext>(p => p.UseSqlServer(@"Data Source=DESKTOP-L5RR2V4; Initial Catalog=Test2; Integrated Security=True;"));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "EndPoint.WebApi", Version = "v1" });
             });
+
+            services.AddScoped<IDataBaseContext, DataBaseContext>();
+            services.AddScoped<IRegisterUserService, RegisterUserService>();
+
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<DataBaseContext>()
+                .AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +56,7 @@ namespace EndPoint.WebApi
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

@@ -18,7 +18,8 @@ namespace EndPoint.WebApi
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration) => Configuration = configuration;
+        public Startup(IConfiguration configuration) => 
+            Configuration = configuration;
 
         public IConfiguration Configuration { get; }
 
@@ -54,10 +55,7 @@ namespace EndPoint.WebApi
             app.UseAuthorization();
             app.UseAuthentication();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }
 }

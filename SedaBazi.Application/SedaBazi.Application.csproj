@@ -15,8 +15,4 @@
     <ProjectReference Include="..\SedaBazi.Domain\SedaBazi.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\Audios\Queries\" />
-  </ItemGroup>
-
 </Project>

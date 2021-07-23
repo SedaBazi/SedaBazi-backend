@@ -2,6 +2,8 @@
 using SedaBazi.Application.Interfaces.FacadPatterns;
 using SedaBazi.Application.Services.Audios.Commands.AddAudioCollection;
 using SedaBazi.Application.Services.Audios.Commands.DeleteAudioCollection;
+using SedaBazi.Application.Services.Audios.Commands.EditAudioCollection;
+using SedaBazi.Application.Services.Audios.Queries.GetAudioCollection;
 using SedaBazi.Common.Dto;
 
 namespace EndPoint.WebApi.Controllers.Audio.AudioCollection
@@ -54,6 +56,36 @@ namespace EndPoint.WebApi.Controllers.Audio.AudioCollection
             };
 
             return audioFacad.DeleteAudioCollectionService.Execute(request);
+        }
+
+        [HttpPut]
+        public ActionResult<ResultDto> Put([FromBody] EditAudioCollectionDto editDto)
+        {
+            var owner = User.Identity.Name;
+
+            if (owner == null)
+            {
+                return new ResultDto(false, "No user available.");
+            }
+
+            var request = new EditAudioCollectionRequest
+            {
+                Id = editDto.Id,
+                Owner = owner,
+                Name = editDto.Name,
+                Description = editDto.Description,
+                ImageUrl = editDto.ImageUrl,
+                Type = editDto.Type
+            };
+
+            return audioFacad.EditAudioCollectionService.Execute(request);
+        }
+
+        [HttpGet]
+        public ActionResult<ReslutGetAudioCollectionDto> Get([FromBody] GetAudioCollectionDto getDto)
+        {
+            var request = new GetAudioCollectionRequest(getDto.Page, getDto.Size);
+            return audioFacad.GetAudioCollectionService.Execute(request);
         }
     }
 }

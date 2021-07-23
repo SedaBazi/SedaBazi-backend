@@ -2,6 +2,8 @@
 using SedaBazi.Application.Interfaces.FacadPatterns;
 using SedaBazi.Application.Services.Audios.Commands.AddAudioCollection;
 using SedaBazi.Application.Services.Audios.Commands.DeleteAudioCollection;
+using SedaBazi.Application.Services.Audios.Commands.EditAudioCollection;
+using SedaBazi.Application.Services.Audios.Queries.GetAudioCollection;
 
 namespace SedaBazi.Application.Services.Audios.FacadPattern
 {
@@ -11,6 +13,8 @@ namespace SedaBazi.Application.Services.Audios.FacadPattern
 
         private IAddAudioCollectionService addAudioCollectionService;
         private IDeleteAudioCollectionService deleteAudioCollectionService;
+        private IEditAudioCollectionService editAudioCollectionService;
+        private IGetAudioCollectionService getAudioCollectionService;
 
         public AudioFacad(IDataBaseContext dataBaseContext) =>
             this.dataBaseContext = dataBaseContext;
@@ -28,6 +32,22 @@ namespace SedaBazi.Application.Services.Audios.FacadPattern
             get
             {
                 return deleteAudioCollectionService ??= new DeleteAudioCollectionService(dataBaseContext);
+            }
+        }
+
+        public IEditAudioCollectionService EditAudioCollectionService
+        {
+            get
+            {
+                return editAudioCollectionService ??= new EditAudioCollectionService(dataBaseContext);
+            }
+        }
+
+        public IGetAudioCollectionService GetAudioCollectionService
+        {
+            get
+            {
+                return getAudioCollectionService ??= new GetAudioCollectionService(dataBaseContext);
             }
         }
     }

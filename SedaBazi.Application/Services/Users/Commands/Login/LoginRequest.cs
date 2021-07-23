@@ -2,11 +2,11 @@
 {
     public class LoginRequest
     {
-        public string Email { get; set; }
+        public string Email { get; }
 
-        public string Password { get; set; }
+        public string Password { get; }
 
-        public bool IsPersistent { get; set; }
+        public bool IsPersistent { get; }
 
         public LoginRequest(string email, string password, bool isPersistent)
         {

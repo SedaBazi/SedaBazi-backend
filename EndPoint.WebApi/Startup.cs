@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SedaBazi.Application.Interfaces.Contexts;
+using SedaBazi.Application.Interfaces.FacadPatterns;
+using SedaBazi.Application.Services.Audios.FacadPattern;
 using SedaBazi.Application.Services.Email;
 using SedaBazi.Application.Services.Users.Commands.ForgotPassword;
 using SedaBazi.Application.Services.Users.Commands.Login;
@@ -25,7 +27,7 @@ namespace EndPoint.WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataBaseContext>(p => p.UseSqlServer(@"Data Source=DESKTOP-L5RR2V4; Initial Catalog=Test2; Integrated Security=True;"));
+            services.AddDbContext<DataBaseContext>(p => p.UseSqlServer(Configuration["ConnectionString"]));
 
             services.AddControllers();
 
@@ -35,6 +37,8 @@ namespace EndPoint.WebApi
             services.AddScoped<ILogoutService, LogoutService>();
             services.AddScoped<IForgotPasswordService, ForgotPasswordService>();
             services.AddScoped<IEmailService, EmailService>();
+
+            services.AddScoped<IAudioFacad, AudioFacad>();
 
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<DataBaseContext>()

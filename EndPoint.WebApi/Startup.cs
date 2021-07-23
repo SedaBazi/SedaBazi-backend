@@ -1,47 +1,51 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using SedaBazi.Application.Interfaces.Contexts;
+using SedaBazi.Application.Services.Email;
+using SedaBazi.Application.Services.Users.Commands.ForgotPassword;
+using SedaBazi.Application.Services.Users.Commands.Login;
+using SedaBazi.Application.Services.Users.Commands.Logout;
+using SedaBazi.Application.Services.Users.Commands.Register;
+using SedaBazi.Domain.Entities.Users;
+using SedaBazi.Persistence.Contexts;
 
 namespace EndPoint.WebApi
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
+        public Startup(IConfiguration configuration) => 
             Configuration = configuration;
-        }
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<DataBaseContext>(p => p.UseSqlServer(@"Data Source=DESKTOP-L5RR2V4; Initial Catalog=Test2; Integrated Security=True;"));
 
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "EndPoint.WebApi", Version = "v1" });
-            });
+
+            services.AddScoped<IDataBaseContext, DataBaseContext>();
+            services.AddScoped<IRegisterService, RegisterService>();
+            services.AddScoped<ILoginService, LoginService>();
+            services.AddScoped<ILogoutService, LogoutService>();
+            services.AddScoped<IForgotPasswordService, ForgotPasswordService>();
+            services.AddScoped<IEmailService, EmailService>();
+
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<DataBaseContext>()
+                .AddDefaultTokenProviders();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "EndPoint.WebApi v1"));
             }
 
             app.UseHttpsRedirection();
@@ -49,11 +53,9 @@ namespace EndPoint.WebApi
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }
 }

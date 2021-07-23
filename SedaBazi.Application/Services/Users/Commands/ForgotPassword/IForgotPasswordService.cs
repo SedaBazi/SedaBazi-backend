@@ -4,6 +4,6 @@ namespace SedaBazi.Application.Services.Users.Commands.ForgotPassword
 {
     public interface IForgotPasswordService
     {
-        ResultDto Execute(RequestForgotPasswordDto request);
+        ResultDto Execute(ForgotPasswordRequest request);
     }
 }

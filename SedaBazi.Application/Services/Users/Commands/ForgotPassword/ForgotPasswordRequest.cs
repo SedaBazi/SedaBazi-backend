@@ -1,7 +1,9 @@
 ﻿namespace SedaBazi.Application.Services.Users.Commands.ForgotPassword
 {
-    public class RequestForgotPasswordDto
+    public class ForgotPasswordRequest
     {
         public string Email { get; set; }
+
+        public ForgotPasswordRequest(string email) => Email = email;
     }
 }

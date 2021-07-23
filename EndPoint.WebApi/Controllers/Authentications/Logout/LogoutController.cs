@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SedaBazi.Application.Services.Users.Commands.LogoutUser;
+using SedaBazi.Application.Services.Users.Commands.Logout;
 
 namespace EndPoint.WebApi.Controllers.Authentications.Logout
 {
@@ -7,13 +7,12 @@ namespace EndPoint.WebApi.Controllers.Authentications.Logout
     [ApiController]
     public class LogoutController : ControllerBase
     {
-        public readonly ILogoutUserService logoutUserService;
+        public readonly ILogoutService logoutUserService;
 
-        public LogoutController(ILogoutUserService logoutUserService) =>
+        public LogoutController(ILogoutService logoutUserService) =>
             this.logoutUserService = logoutUserService;
 
         [HttpPost]
-        public void Logout() =>
-            logoutUserService.Execute();
+        public void Post() => logoutUserService.Execute();
     }
 }

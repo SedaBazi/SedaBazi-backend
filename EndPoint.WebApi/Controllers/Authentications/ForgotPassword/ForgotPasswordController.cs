@@ -14,14 +14,10 @@ namespace EndPoint.WebApi.Controllers.Authentications.ForgotPassword
             this.forgotPasswordService = forgotPasswordService;
 
         [HttpPost]
-        public ActionResult<ResultDto> ForgotPassword([FromBody] ForgotPasswordDto forgotPasswordDto)
+        public ActionResult<ResultDto> Post([FromBody] ForgotPasswordDto forgotPasswordDto)
         {
-            var user = new RequestForgotPasswordDto
-            {
-                Email = forgotPasswordDto.Email
-            };
-
-            return forgotPasswordService.Execute(user);
+            var request = new ForgotPasswordRequest(forgotPasswordDto.Email);
+            return forgotPasswordService.Execute(request);
         }
     }
 }

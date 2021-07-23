@@ -18,17 +18,13 @@ namespace SedaBazi.Application.Services.Users.Commands.ForgotPassword
             this.emailService = emailService;
         }
 
-        public ResultDto Execute(RequestForgotPasswordDto request)
+        public ResultDto Execute(ForgotPasswordRequest request)
         {
             var user = userManager.FindByNameAsync(request.Email).Result;
 
             if (user == null)
             {
-                return new ResultDto
-                {
-                    IsSuccess = false,
-                    Message = "Email doesn't exist."
-                };
+                return new ResultDto(false, "Email doesn't exist.");
             }
 
             var newPassword = new Password(8).Next();
@@ -42,18 +38,11 @@ namespace SedaBazi.Application.Services.Users.Commands.ForgotPassword
 
             if (result.Succeeded)
             {
-                return new ResultDto
-                {
-                    IsSuccess = true,
-                    Message = "Password Reset Successfully."
-                };
+                return new ResultDto(true, "Password Reset Successfully.");
             }
 
-            return new ResultDto
-            {
-                IsSuccess = false,
-                Message = string.Join("\n", result.Errors.Select(x => x.Description))
-            };
+            var errorMessage = string.Join("\n", result.Errors.Select(x => x.Description));
+            return new ResultDto(false, errorMessage);
         }
     }
 }

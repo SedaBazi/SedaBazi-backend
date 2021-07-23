@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SedaBazi.Application.Services.Users.Commands.LoginUser;
+using SedaBazi.Application.Services.Users.Commands.Login;
 using SedaBazi.Common.Dto;
 
 namespace EndPoint.WebApi.Controllers.Authentications.Login
@@ -8,21 +8,16 @@ namespace EndPoint.WebApi.Controllers.Authentications.Login
     [ApiController]
     public class LoginController : ControllerBase
     {
-        public readonly ILoginUserService loginUserService;
+        public readonly ILoginService loginUserService;
 
-        public LoginController(ILoginUserService loginUserService) =>
+        public LoginController(ILoginService loginUserService) =>
             this.loginUserService = loginUserService;
 
         [HttpPost]
-        public ActionResult<ResultDto> Register([FromBody] LoginDto loginDto)
+        public ActionResult<ResultDto> Post([FromBody] LoginDto loginDto)
         {
-            var user = new RequestLoginUserDto
-            {
-                Email = loginDto.Email,
-                Password = loginDto.Password
-            };
-
-            return loginUserService.Execute(user);
+            var request = new LoginRequest(loginDto.Email, loginDto.Password, loginDto.IsPersistent);
+            return loginUserService.Execute(request);
         }
     }
 }

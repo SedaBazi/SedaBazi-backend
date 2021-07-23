@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SedaBazi.Application.Interfaces.FacadPatterns;
 using SedaBazi.Application.Services.Audios.Commands.AddAudioCollection;
+using SedaBazi.Application.Services.Audios.Commands.DeleteAudioCollection;
 using SedaBazi.Common.Dto;
 
 namespace EndPoint.WebApi.Controllers.Audio.AudioCollection
@@ -15,7 +16,7 @@ namespace EndPoint.WebApi.Controllers.Audio.AudioCollection
             this.audioFacad = audioFacad;
 
         [HttpPost]
-        public ActionResult<ResultDto> Post([FromBody] AudioCollectionDto audioCollectionDto)
+        public ActionResult<ResultDto> Post([FromBody] AddAudioCollectionDto addDto)
         {
             var owner = User.Identity.Name;
 
@@ -26,14 +27,33 @@ namespace EndPoint.WebApi.Controllers.Audio.AudioCollection
 
             var request = new AddAudioCollectionRequest
             {
-                Name = audioCollectionDto.Name,
-                Description = audioCollectionDto.Description,
+                Name = addDto.Name,
+                Description = addDto.Description,
                 Owner = owner,
-                ImageUrl = audioCollectionDto.ImageUrl,
-                Type = audioCollectionDto.Type
+                ImageUrl = addDto.ImageUrl,
+                Type = addDto.Type
             };
 
             return audioFacad.AddAudioCollectionService.Execute(request);
+        }
+
+        [HttpDelete]
+        public ActionResult<ResultDto> Delete([FromBody] DeleteAudioCollectionDto deleteDto)
+        {
+            var owner = User.Identity.Name;
+
+            if (owner == null)
+            {
+                return new ResultDto(false, "No user available.");
+            }
+
+            var request = new DeleteAudioCollectionRequest
+            {
+                Id = deleteDto.Id,
+                Owner = owner
+            };
+
+            return audioFacad.DeleteAudioCollectionService.Execute(request);
         }
     }
 }

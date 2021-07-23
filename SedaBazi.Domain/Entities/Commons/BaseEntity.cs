@@ -10,9 +10,9 @@ namespace SedaBazi.Domain.Entities.Commons
         
         public DateTime? UpdateTime { get; set; }
         
-        public bool IsRemoved { get; set; } = false;
+        public bool IsDeleted { get; set; } = false;
         
-        public DateTime? RemoveTime { get; set; }
+        public DateTime? DeleteTime { get; set; }
     }
 
     public abstract class BaseEntity : BaseEntity<long> { }

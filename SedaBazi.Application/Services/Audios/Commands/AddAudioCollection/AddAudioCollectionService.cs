@@ -25,7 +25,7 @@ namespace SedaBazi.Application.Services.Audios.Commands.AddAudioCollection
             dataBaseContext.AudioCollections.Add(audioCollection);
             dataBaseContext.SaveChanges();
 
-            return new ResultDto(true, "Audio Collection successfully added.");
+            return new ResultDto(true, "Audio Collection added successfully.");
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace EndPoint.WebApi.Controllers.Audio.AudioCollection
 {
-    public class AudioCollectionDto
+    public class AddAudioCollectionDto
     {
         [Required]
         public string Name { get; set; }

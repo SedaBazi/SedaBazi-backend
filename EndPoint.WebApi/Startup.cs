@@ -27,7 +27,7 @@ namespace EndPoint.WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataBaseContext>(p => p.UseSqlServer(@"Data Source=DESKTOP-L5RR2V4; Initial Catalog=Test3; Integrated Security=True;"));
+            services.AddDbContext<DataBaseContext>(p => p.UseSqlServer(Configuration["ConnectionString"]));
 
             services.AddControllers();
 

@@ -2,8 +2,14 @@
 {
     public class DeleteAudioCollectionRequest
     {
-        public long Id { get; set; }
+        public long Id { get; }
 
-        public string Owner { get; set; }
+        public string Owner { get; }
+
+        public DeleteAudioCollectionRequest(long id, string owner)
+        {
+            Id = id;
+            Owner = owner;
+        }
     }
 }

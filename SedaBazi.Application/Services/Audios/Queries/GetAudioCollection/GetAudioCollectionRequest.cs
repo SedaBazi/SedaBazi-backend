@@ -2,9 +2,9 @@
 {
     public class GetAudioCollectionRequest
     {
-        public int Page { get; set; }
+        public int Page { get; }
 
-        public int Size { get; set; }
+        public int Size { get; }
 
         public GetAudioCollectionRequest(int page, int size)
         {

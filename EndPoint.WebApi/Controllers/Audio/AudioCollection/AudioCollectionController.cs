@@ -27,14 +27,8 @@ namespace EndPoint.WebApi.Controllers.Audio.AudioCollection
                 return new ResultDto(false, "No user available.");
             }
 
-            var request = new AddAudioCollectionRequest
-            {
-                Name = addDto.Name,
-                Description = addDto.Description,
-                Owner = owner,
-                ImageUrl = addDto.ImageUrl,
-                Type = addDto.Type
-            };
+            var request = new AddAudioCollectionRequest(addDto.Name, 
+                addDto.Description, owner, addDto.ImageUrl, addDto.Type);
 
             return audioFacad.AddAudioCollectionService.Execute(request);
         }
@@ -49,11 +43,7 @@ namespace EndPoint.WebApi.Controllers.Audio.AudioCollection
                 return new ResultDto(false, "No user available.");
             }
 
-            var request = new DeleteAudioCollectionRequest
-            {
-                Id = deleteDto.Id,
-                Owner = owner
-            };
+            var request = new DeleteAudioCollectionRequest(deleteDto.Id, owner);
 
             return audioFacad.DeleteAudioCollectionService.Execute(request);
         }
@@ -68,21 +58,14 @@ namespace EndPoint.WebApi.Controllers.Audio.AudioCollection
                 return new ResultDto(false, "No user available.");
             }
 
-            var request = new EditAudioCollectionRequest
-            {
-                Id = editDto.Id,
-                Owner = owner,
-                Name = editDto.Name,
-                Description = editDto.Description,
-                ImageUrl = editDto.ImageUrl,
-                Type = editDto.Type
-            };
+            var request = new EditAudioCollectionRequest(editDto.Id, owner, editDto.Name, 
+                editDto.Description, editDto.ImageUrl, editDto.Type);
 
             return audioFacad.EditAudioCollectionService.Execute(request);
         }
 
         [HttpGet]
-        public ActionResult<ReslutGetAudioCollectionDto> Get([FromBody] GetAudioCollectionDto getDto)
+        public ActionResult<ResultDto<ReslutGetAudioCollectionDto>> Get([FromBody] GetAudioCollectionDto getDto)
         {
             var request = new GetAudioCollectionRequest(getDto.Page, getDto.Size);
             return audioFacad.GetAudioCollectionService.Execute(request);

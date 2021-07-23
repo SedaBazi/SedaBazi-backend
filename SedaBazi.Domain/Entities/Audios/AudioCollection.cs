@@ -13,7 +13,6 @@ namespace SedaBazi.Domain.Entities.Audios
         [Required]
         public string Owner { get; set; }
 
-        [Required]
         public string ImageUrl { get; set; }
 
         [Required]

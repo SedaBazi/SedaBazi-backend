@@ -4,10 +4,8 @@ namespace EndPoint.WebApi.Controllers.Authentications.Register
 {
     public class RegisterDto
     {
-        [Required]
         public string FirstName { get; set; }
 
-        [Required]
         public string LastName { get; set; }
 
         [Required]
@@ -22,5 +20,8 @@ namespace EndPoint.WebApi.Controllers.Authentications.Register
         [DataType(DataType.Password)]
         [Compare(nameof(Password))]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        public bool IsPublisher { get; set; }
     }
 }

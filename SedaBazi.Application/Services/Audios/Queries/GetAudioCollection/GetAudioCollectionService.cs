@@ -12,7 +12,7 @@ namespace SedaBazi.Application.Services.Audios.Queries.GetAudioCollection
         public GetAudioCollectionService(IDataBaseContext dataBaseContext) =>
             this.dataBaseContext = dataBaseContext;
 
-        public ResultDto<ReslutGetAudioCollectionDto> Execute(GetAudioCollectionRequest request)
+        public ResultDto<ResultGetAudioCollectionDto> Execute(GetAudioCollectionRequest request)
         {
             var audioCollections = dataBaseContext.AudioCollections.AsQueryable();
 
@@ -21,9 +21,9 @@ namespace SedaBazi.Application.Services.Audios.Queries.GetAudioCollection
                 .Select(x => new GetAudioCollectionDto(x.Id, x.Owner, x.Name, x.Description, x.ImageUrl, x.Type))
                 .ToList();
 
-            var result = new ReslutGetAudioCollectionDto(rowsCount, getAudioCollectionDtos);
+            var result = new ResultGetAudioCollectionDto(rowsCount, getAudioCollectionDtos);
 
-            return new ResultDto<ReslutGetAudioCollectionDto>(true, "List returned successfully.", result);
+            return new ResultDto<ResultGetAudioCollectionDto>(true, "List returned successfully.", result);
         }
     }
 }

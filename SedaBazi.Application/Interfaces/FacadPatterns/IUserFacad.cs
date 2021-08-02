@@ -10,10 +10,15 @@ namespace SedaBazi.Application.Interfaces.FacadPatterns
     public interface IUserFacad
     {
         IRegisterService RegisterService { get; }
+
         ILoginService LoginService { get; }
+        
         ILogoutService LogoutService { get; }
+        
         IForgotPasswordService ForgotPasswordService { get; }
+        
         IEditProfileService EditProfileService { get; }
+        
         IGetProfileService GetProfileService { get; }
     }
 }

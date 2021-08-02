@@ -18,7 +18,7 @@ namespace SedaBazi.Application.Services.Audios.Commands.EditAudioCollection
 
             if (audioCollection == null)
             {
-                return new ResultDto(true, "Audio Collection not available.");
+                return new ResultDto(true, "Audio Collection is not available.");
             }
 
             if (audioCollection.Owner != request.Owner)

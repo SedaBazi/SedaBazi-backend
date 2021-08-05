@@ -10,7 +10,7 @@ using SedaBazi.Persistence.Contexts;
 namespace SedaBazi.Persistence.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20210723204648_Init")]
+    [Migration("20210730144534_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -215,6 +215,12 @@ namespace SedaBazi.Persistence.Migrations
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsPremium")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsPublisher")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");

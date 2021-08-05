@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SedaBazi.Application.Interfaces.FacadPatterns;
 using SedaBazi.Application.Services.Users.Commands.Register;
 using SedaBazi.Common.Dto;
 
@@ -8,17 +9,17 @@ namespace EndPoint.WebApi.Controllers.Authentications.Register
     [ApiController]
     public class RegisterController : ControllerBase
     {
-        public readonly IRegisterService registerUserService;
+        private readonly IUserFacad userFacad;
 
-        public RegisterController(IRegisterService registerUserService) =>
-            this.registerUserService = registerUserService;
+        public RegisterController(IUserFacad userFacad) =>
+            this.userFacad = userFacad;
 
         [HttpPost]
         public ActionResult<ResultDto> Post([FromBody] RegisterDto registerDto)
         {
-            var request = new RegisterRequest(registerDto.FirstName,
-                registerDto.LastName, registerDto.Email, registerDto.Password);
-            return registerUserService.Execute(request);
+            var request = new RegisterRequest(registerDto.FirstName, registerDto.LastName, 
+                registerDto.Email, registerDto.Password, registerDto.IsPublisher);
+            return userFacad.RegisterService.Execute(request);
         }
     }
 }

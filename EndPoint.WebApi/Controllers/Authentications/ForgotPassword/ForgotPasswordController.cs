@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SedaBazi.Application.Interfaces.FacadPatterns;
 using SedaBazi.Application.Services.Users.Commands.ForgotPassword;
 using SedaBazi.Common.Dto;
 
@@ -8,16 +9,16 @@ namespace EndPoint.WebApi.Controllers.Authentications.ForgotPassword
     [ApiController]
     public class ForgotPasswordController : ControllerBase
     {
-        public readonly IForgotPasswordService forgotPasswordService;
+        private readonly IUserFacad userFacad;
 
-        public ForgotPasswordController(IForgotPasswordService forgotPasswordService) =>
-            this.forgotPasswordService = forgotPasswordService;
+        public ForgotPasswordController(IUserFacad userFacad) =>
+            this.userFacad = userFacad;
 
         [HttpPost]
         public ActionResult<ResultDto> Post([FromBody] ForgotPasswordDto forgotPasswordDto)
         {
             var request = new ForgotPasswordRequest(forgotPasswordDto.Email);
-            return forgotPasswordService.Execute(request);
+            return userFacad.ForgotPasswordService.Execute(request);
         }
     }
 }

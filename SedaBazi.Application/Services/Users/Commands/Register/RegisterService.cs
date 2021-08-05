@@ -23,7 +23,8 @@ namespace SedaBazi.Application.Services.Users.Commands.Register
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 Email = request.Email,
-                UserName = request.Email
+                UserName = request.Email,
+                IsPublisher = request.IsPublisher,
             };
 
             var result = userManager.CreateAsync(user, request.Password).Result;

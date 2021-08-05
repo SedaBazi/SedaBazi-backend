@@ -5,14 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SedaBazi.Application.Interfaces.Contexts;
 using SedaBazi.Application.Interfaces.FacadPatterns;
 using SedaBazi.Application.Services.Audios.FacadPattern;
-using SedaBazi.Application.Services.Email;
-using SedaBazi.Application.Services.Users.Commands.ForgotPassword;
-using SedaBazi.Application.Services.Users.Commands.Login;
-using SedaBazi.Application.Services.Users.Commands.Logout;
-using SedaBazi.Application.Services.Users.Commands.Register;
+using SedaBazi.Application.Services.Users.FacadPattern;
 using SedaBazi.Domain.Entities.Users;
 using SedaBazi.Persistence.Contexts;
 
@@ -31,12 +26,8 @@ namespace EndPoint.WebApi
 
             services.AddControllers();
 
-            services.AddScoped<IDataBaseContext, DataBaseContext>();
-            services.AddScoped<IRegisterService, RegisterService>();
-            services.AddScoped<ILoginService, LoginService>();
-            services.AddScoped<ILogoutService, LogoutService>();
-            services.AddScoped<IForgotPasswordService, ForgotPasswordService>();
-            services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IUserFacad, UserFacad>();
+            services.AddScoped<IAudioFacad, AudioFacad>();
 
             services.AddScoped<IAudioFacad, AudioFacad>();
 

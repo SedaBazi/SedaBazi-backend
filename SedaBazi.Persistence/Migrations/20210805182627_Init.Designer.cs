@@ -10,7 +10,7 @@ using SedaBazi.Persistence.Contexts;
 namespace SedaBazi.Persistence.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20210805165242_Init")]
+    [Migration("20210805182627_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

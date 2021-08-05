@@ -15,4 +15,8 @@
     <ProjectReference Include="..\SedaBazi.Domain\SedaBazi.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\Publisher\Commands\" />
+  </ItemGroup>
+
 </Project>

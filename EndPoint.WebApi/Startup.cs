@@ -29,6 +29,8 @@ namespace EndPoint.WebApi
             services.AddScoped<IUserFacad, UserFacad>();
             services.AddScoped<IAudioFacad, AudioFacad>();
 
+            services.AddScoped<IAudioFacad, AudioFacad>();
+
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<DataBaseContext>()
                 .AddDefaultTokenProviders();

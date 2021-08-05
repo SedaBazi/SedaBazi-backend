@@ -3,6 +3,7 @@
     public class ResultDto
     {
         public bool IsSuccess { get; }
+
         public string Message { get; }
 
         public ResultDto(bool isSuccess, string message)
@@ -15,7 +16,9 @@
     public class ResultDto<T>
     {
         public bool IsSuccess { get; }
+
         public string Message { get; }
+
         public T Data { get; }
 
         public ResultDto(bool isSuccess, string message, T data)

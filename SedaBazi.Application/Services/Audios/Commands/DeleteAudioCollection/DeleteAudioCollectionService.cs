@@ -18,12 +18,12 @@ namespace SedaBazi.Application.Services.Audios.Commands.DeleteAudioCollection
 
             if (audioCollection == null)
             {
-                return new ResultDto(true, "Audio Collection is not available.");
+                return new ResultDto(false, "Audio Collection is not available.");
             }
 
             if (audioCollection.Owner != request.Owner)
             {
-                return new ResultDto(true, "User access is not allowed.");
+                return new ResultDto(false, "User access is not allowed.");
             }
 
             audioCollection.IsDeleted = true;

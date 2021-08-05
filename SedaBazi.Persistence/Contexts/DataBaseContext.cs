@@ -21,9 +21,6 @@ namespace SedaBazi.Persistence.Contexts
 
             modelBuilder.Entity<AudioCollection>().HasQueryFilter(p => !p.IsDeleted);
             modelBuilder.Entity<Management>().HasQueryFilter(p => !p.IsDeleted);
-
-            modelBuilder.Entity<Management>().HasIndex(x => new { x.User, x.AudioCollectionId }).IsUnique();
-            modelBuilder.Entity<AudioCollection>().HasIndex(x => new { x.Owner, x.Name }).IsUnique();
         }
     }
 }

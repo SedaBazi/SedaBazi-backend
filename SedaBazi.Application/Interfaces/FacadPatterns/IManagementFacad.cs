@@ -9,7 +9,7 @@ namespace SedaBazi.Application.Interfaces.FacadPatterns
         IAddManagementService AddManagementService { get; }
 
         IDeleteManagementService DeleteManagementService { get; }
-        
+
         IGetManagementService GetManagementService { get; }
     }
 }

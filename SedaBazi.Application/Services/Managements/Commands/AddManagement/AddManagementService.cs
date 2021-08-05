@@ -18,17 +18,22 @@ namespace SedaBazi.Application.Services.Managements.Commands.AddManagement
 
             if (audioCollection == null)
             {
-                return new ResultDto(true, "Audio Collection is not available.");
+                return new ResultDto(false, "Audio Collection is not available.");
             }
 
-            if (dataBaseContext.Users.All(x => x.UserName != request.User))
+            if (dataBaseContext.Users.All(x => x.UserName != request.User) || request.Owner == request.User)
             {
-                return new ResultDto(true, "User is not available.");
+                return new ResultDto(false, "User is not available.");
             }
 
             if (audioCollection.Owner != request.Owner)
             {
-                return new ResultDto(true, "User access is not allowed.");
+                return new ResultDto(false, "User access is not allowed.");
+            }
+
+            if (dataBaseContext.Managements.Any(x => x.AudioCollectionId == request.AudioCollectionId && x.User == request.User))
+            {
+                return new ResultDto(false, "Management is available");
             }
 
             var management = new Management

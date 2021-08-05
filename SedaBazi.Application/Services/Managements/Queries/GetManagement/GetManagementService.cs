@@ -17,7 +17,7 @@ namespace SedaBazi.Application.Services.Managements.Queries.GetManagement
 
             var getManagementDtos = managements
                 .Where(x => x.AudioCollectionId == request.AudioCollectionId)
-                .Select(x => new GetManagementDto(x.User))
+                .Select(x => new GetManagementDto(x.Id, x.User, x.AudioCollectionId))
                 .ToList();
 
             var result = new ResultGetManagementDto(getManagementDtos);

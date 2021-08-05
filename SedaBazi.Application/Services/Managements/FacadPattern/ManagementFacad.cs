@@ -11,7 +11,9 @@ namespace SedaBazi.Application.Services.Managements.FacadPattern
         private readonly IDataBaseContext dataBaseContext;
 
         private IAddManagementService addManagementService;
+
         private IDeleteManagementService deleteManagementService;
+
         private IGetManagementService getManagementService;
 
         public ManagementFacad(IDataBaseContext dataBaseContext) =>

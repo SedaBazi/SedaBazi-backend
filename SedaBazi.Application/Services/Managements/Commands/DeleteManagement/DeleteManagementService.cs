@@ -18,14 +18,14 @@ namespace SedaBazi.Application.Services.Managements.Commands.DeleteManagement
 
             if (management == null)
             {
-                return new ResultDto(true, "Management is not available.");
+                return new ResultDto(false, "Management is not available.");
             }
 
             var audioCollections = dataBaseContext.AudioCollections.FirstOrDefault(x => x.Id == management.AudioCollectionId);
 
             if (audioCollections.Owner != request.Owner)
             {
-                return new ResultDto(true, "User access is not allowed.");
+                return new ResultDto(false, "User access is not allowed.");
             }
 
             management.IsDeleted = true;

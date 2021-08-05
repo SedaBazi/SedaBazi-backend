@@ -7,11 +7,11 @@ namespace SedaBazi.Domain.Entities.Commons
         public TKey Id { get; set; }
 
         public DateTime InsertTime { get; set; } = DateTime.Now;
-        
+
         public DateTime? UpdateTime { get; set; }
-        
+
         public bool IsDeleted { get; set; } = false;
-        
+
         public DateTime? DeleteTime { get; set; }
     }
 

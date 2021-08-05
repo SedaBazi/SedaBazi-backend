@@ -14,7 +14,7 @@
 
         public string Type { get; }
 
-        public EditAudioCollectionRequest(long id, string owner,
+        public EditAudioCollectionRequest(long id, string owner, 
             string name, string description, string imageUrl, string type)
         {
             Id = id;

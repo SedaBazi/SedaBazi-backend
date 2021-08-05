@@ -2,13 +2,13 @@
 
 namespace SedaBazi.Application.Services.Audios.Queries.GetAudioCollection
 {
-    public class ResultGetAudioCollectionDto
+    public class ReslutGetAudioCollectionDto
     {
         public List<GetAudioCollectionDto> GetAudioCollectionDtos { get; }
         
         public int RowsCount { get; }
 
-        public ResultGetAudioCollectionDto(int rowsCount, List<GetAudioCollectionDto> getAudioCollectionDtos)
+        public ReslutGetAudioCollectionDto(int rowsCount, List<GetAudioCollectionDto> getAudioCollectionDtos)
         {
             RowsCount = rowsCount;
             GetAudioCollectionDtos = getAudioCollectionDtos;

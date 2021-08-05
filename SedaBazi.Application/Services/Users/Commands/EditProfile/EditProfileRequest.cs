@@ -7,7 +7,7 @@
         public string FirstName { get; }
 
         public string LastName { get; }
-
+        
         public EditProfileRequest(string firstName, string lastName, string email)
         {
             Email = email;

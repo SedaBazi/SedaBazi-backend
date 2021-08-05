@@ -10,6 +10,7 @@ namespace SedaBazi.Application.Interfaces.Contexts
     public interface IDataBaseContext
     {
         DbSet<User> Users { get; set; }
+        DbSet<AudioCollection> AudioCollections { get; set; }
 
         DbSet<AudioCollection> AudioCollections { get; set; }
 

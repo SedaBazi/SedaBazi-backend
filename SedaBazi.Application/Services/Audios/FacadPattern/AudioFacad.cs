@@ -12,8 +12,11 @@ namespace SedaBazi.Application.Services.Audios.FacadPattern
         private readonly IDataBaseContext dataBaseContext;
 
         private IAddAudioCollectionService addAudioCollectionService;
+
         private IDeleteAudioCollectionService deleteAudioCollectionService;
+
         private IEditAudioCollectionService editAudioCollectionService;
+
         private IGetAudioCollectionService getAudioCollectionService;
 
         public AudioFacad(IDataBaseContext dataBaseContext) =>

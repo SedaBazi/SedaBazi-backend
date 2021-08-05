@@ -17,8 +17,8 @@ namespace EndPoint.WebApi.Controllers.Authentications.Register
         [HttpPost]
         public ActionResult<ResultDto> Post([FromBody] RegisterDto registerDto)
         {
-            var request = new RegisterRequest(registerDto.FirstName, registerDto.LastName, 
-                registerDto.Email, registerDto.Password, registerDto.IsPublisher);
+            var request = new RegisterRequest(registerDto.FirstName, registerDto.LastName,
+                registerDto.Email.ToLower(), registerDto.Password, registerDto.IsPublisher);
             return userFacad.RegisterService.Execute(request);
         }
     }

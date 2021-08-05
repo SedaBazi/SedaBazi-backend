@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SedaBazi.Application.Interfaces.FacadPatterns;
-using SedaBazi.Application.Services.Users.Commands.Logout;
 using SedaBazi.Common.Dto;
 
 namespace EndPoint.WebApi.Controllers.Authentications.Logout

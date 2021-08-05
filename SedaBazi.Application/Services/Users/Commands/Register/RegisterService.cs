@@ -8,6 +8,7 @@ namespace SedaBazi.Application.Services.Users.Commands.Register
     public class RegisterService : IRegisterService
     {
         private readonly UserManager<User> userManager;
+
         private readonly SignInManager<User> signInManager;
 
         public RegisterService(UserManager<User> userManager, SignInManager<User> signInManager)

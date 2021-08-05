@@ -4,7 +4,7 @@
     {
         public string Email { get; }
 
-        public ForgotPasswordRequest(string email) => 
+        public ForgotPasswordRequest(string email) =>
             Email = email;
     }
 }

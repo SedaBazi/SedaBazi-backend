@@ -14,14 +14,21 @@ namespace SedaBazi.Application.Services.Users.FacadPattern
     public class UserFacad : IUserFacad
     {
         private readonly UserManager<User> userManager;
+
         private readonly SignInManager<User> signInManager;
+        
         private readonly IEmailService emailService;
 
         private IRegisterService registerService;
+        
         private ILoginService loginService;
+        
         private ILogoutService logoutService;
+        
         private IForgotPasswordService forgotPasswordService;
+        
         private IEditProfileService editProfileService;
+        
         private IGetProfileService getProfileService;
 
         public UserFacad(UserManager<User> userManager, SignInManager<User> signInManager, IEmailService emailService) 

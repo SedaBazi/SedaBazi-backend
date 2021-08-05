@@ -10,7 +10,7 @@ namespace SedaBazi.Application.Services.Email
     {
         private readonly IConfiguration configuration;
 
-        public EmailService(IConfiguration configuration) => 
+        public EmailService(IConfiguration configuration) =>
             this.configuration = configuration;
 
         public Task Execute(string email, string subject, string body)

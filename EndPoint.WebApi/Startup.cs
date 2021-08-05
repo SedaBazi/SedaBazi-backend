@@ -5,8 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SedaBazi.Application.Interfaces.Contexts;
 using SedaBazi.Application.Interfaces.FacadPatterns;
 using SedaBazi.Application.Services.Audios.FacadPattern;
+using SedaBazi.Application.Services.Email;
+using SedaBazi.Application.Services.Managements.FacadPattern;
 using SedaBazi.Application.Services.Users.FacadPattern;
 using SedaBazi.Domain.Entities.Users;
 using SedaBazi.Persistence.Contexts;
@@ -15,7 +18,7 @@ namespace EndPoint.WebApi
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration) => 
+        public Startup(IConfiguration configuration) =>
             Configuration = configuration;
 
         public IConfiguration Configuration { get; }
@@ -28,8 +31,9 @@ namespace EndPoint.WebApi
 
             services.AddScoped<IUserFacad, UserFacad>();
             services.AddScoped<IAudioFacad, AudioFacad>();
-
-            services.AddScoped<IAudioFacad, AudioFacad>();
+            services.AddScoped<IManagementFacad, ManagementFacad>();
+            services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IDataBaseContext, DataBaseContext>();
 
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<DataBaseContext>()

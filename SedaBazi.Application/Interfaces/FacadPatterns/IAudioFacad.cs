@@ -8,8 +8,11 @@ namespace SedaBazi.Application.Interfaces.FacadPatterns
     public interface IAudioFacad
     {
         IAddAudioCollectionService AddAudioCollectionService { get; }
+
         IDeleteAudioCollectionService DeleteAudioCollectionService { get; }
+
         IEditAudioCollectionService EditAudioCollectionService { get; }
+
         IGetAudioCollectionService GetAudioCollectionService { get; }
     }
 }

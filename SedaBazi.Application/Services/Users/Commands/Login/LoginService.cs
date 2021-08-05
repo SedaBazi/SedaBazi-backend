@@ -7,6 +7,7 @@ namespace SedaBazi.Application.Services.Users.Commands.Login
     public class LoginService : ILoginService
     {
         private readonly UserManager<User> userManager;
+
         private readonly SignInManager<User> signInManager;
 
         public LoginService(UserManager<User> userManager, SignInManager<User> signInManager)

@@ -1,8 +1,12 @@
 ﻿using SedaBazi.Application.Interfaces.Contexts;
 using SedaBazi.Application.Interfaces.FacadPatterns;
+using SedaBazi.Application.Services.Audios.Commands.AddAudio;
 using SedaBazi.Application.Services.Audios.Commands.AddAudioCollection;
+using SedaBazi.Application.Services.Audios.Commands.DeleteAudio;
 using SedaBazi.Application.Services.Audios.Commands.DeleteAudioCollection;
+using SedaBazi.Application.Services.Audios.Commands.EditAudio;
 using SedaBazi.Application.Services.Audios.Commands.EditAudioCollection;
+using SedaBazi.Application.Services.Audios.Queries.GetAudio;
 using SedaBazi.Application.Services.Audios.Queries.GetAudioCollection;
 
 namespace SedaBazi.Application.Services.Audios.FacadPattern
@@ -18,6 +22,14 @@ namespace SedaBazi.Application.Services.Audios.FacadPattern
         private IEditAudioCollectionService editAudioCollectionService;
 
         private IGetAudioCollectionService getAudioCollectionService;
+
+        private IAddAudioService addAudioService;
+
+        private IDeleteAudioService deleteAudioService;
+
+        private IEditAudioService editAudioService;
+
+        private IGetAudioService getAudioService;
 
         public AudioFacad(IDataBaseContext dataBaseContext) =>
             this.dataBaseContext = dataBaseContext;
@@ -51,6 +63,38 @@ namespace SedaBazi.Application.Services.Audios.FacadPattern
             get
             {
                 return getAudioCollectionService ??= new GetAudioCollectionService(dataBaseContext);
+            }
+        }
+
+        public IAddAudioService AddAudioService
+        {
+            get
+            {
+                return addAudioService ??= new AddAudioService(dataBaseContext);
+            }
+        }
+
+        public IDeleteAudioService DeleteAudioService
+        {
+            get
+            {
+                return deleteAudioService ??= new DeleteAudioService(dataBaseContext);
+            }
+        }
+
+        public IEditAudioService EditAudioService
+        {
+            get
+            {
+                return editAudioService ??= new EditAudioService(dataBaseContext);
+            }
+        }
+
+        public IGetAudioService GetAudioService
+        {
+            get
+            {
+                return getAudioService ??= new GetAudioService(dataBaseContext);
             }
         }
     }

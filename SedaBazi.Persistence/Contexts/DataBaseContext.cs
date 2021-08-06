@@ -11,6 +11,8 @@ namespace SedaBazi.Persistence.Contexts
     {
         public DbSet<AudioCollection> AudioCollections { get; set; }
 
+        public DbSet<Audio> Audios { get; set; }
+
         public DbSet<Management> Managements { get; set; }
 
         public DataBaseContext(DbContextOptions<DataBaseContext> options) : base(options) { }
@@ -20,6 +22,7 @@ namespace SedaBazi.Persistence.Contexts
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<AudioCollection>().HasQueryFilter(p => !p.IsDeleted);
+            modelBuilder.Entity<Audio>().HasQueryFilter(p => !p.IsDeleted);
             modelBuilder.Entity<Management>().HasQueryFilter(p => !p.IsDeleted);
         }
     }

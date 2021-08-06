@@ -6,10 +6,13 @@
 
         public int Size { get; }
 
-        public GetAudioRequest(int page, int size)
+        public string SearchValue { get; }
+
+        public GetAudioRequest(int page, int size, string searchValue)
         {
             Page = page;
             Size = size;
+            SearchValue = searchValue;
         }
     }
 }

@@ -27,7 +27,7 @@ namespace EndPoint.WebApi.Controllers.Audio.AudioCollection
                 return new ResultDto(false, "No user available.");
             }
 
-            var request = new AddAudioCollectionRequest(addDto.Name, 
+            var request = new AddAudioCollectionRequest(addDto.Name,
                 addDto.Description, owner, addDto.ImageUrl, addDto.Type);
 
             return audioFacad.AddAudioCollectionService.Execute(request);
@@ -58,7 +58,7 @@ namespace EndPoint.WebApi.Controllers.Audio.AudioCollection
                 return new ResultDto(false, "No user available.");
             }
 
-            var request = new EditAudioCollectionRequest(editDto.Id, owner, editDto.Name, 
+            var request = new EditAudioCollectionRequest(editDto.Id, owner, editDto.Name,
                 editDto.Description, editDto.ImageUrl, editDto.Type);
 
             return audioFacad.EditAudioCollectionService.Execute(request);
@@ -67,7 +67,7 @@ namespace EndPoint.WebApi.Controllers.Audio.AudioCollection
         [HttpGet]
         public ActionResult<ResultDto<ResultGetAudioCollectionDto>> Get([FromBody] GetAudioCollectionDto getDto)
         {
-            var request = new GetAudioCollectionRequest(getDto.Page, getDto.Size);
+            var request = new GetAudioCollectionRequest(getDto.Page, getDto.Size, getDto.SearchValue);
             return audioFacad.GetAudioCollectionService.Execute(request);
         }
     }

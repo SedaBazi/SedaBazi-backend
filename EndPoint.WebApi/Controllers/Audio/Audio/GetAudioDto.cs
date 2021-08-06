@@ -7,5 +7,7 @@
         public int Size { get; set; }
 
         public string SearchValue { get; set; }
+
+        public long? AudioCollectionId { get; set; }
     }
 }

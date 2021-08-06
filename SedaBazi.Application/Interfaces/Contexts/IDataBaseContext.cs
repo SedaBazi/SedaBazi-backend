@@ -15,6 +15,8 @@ namespace SedaBazi.Application.Interfaces.Contexts
 
         DbSet<Audio> Audios { get; set; }
 
+        DbSet<AudioLink> AudioLinks { get; set; }
+
         DbSet<Management> Managements { get; set; }
 
         int SaveChanges(bool acceptAllChangesOnSuccess);

@@ -16,11 +16,24 @@ namespace SedaBazi.Application.Services.Audios.Queries.GetAudio
         {
             var audios = dataBaseContext.Audios.AsQueryable();
 
-            var getAudioDtos = audios
-                .Where(x => string.IsNullOrEmpty(request.SearchValue) ||
+            if (request.AudioCollectionId != null)
+            {
+                var audioIds = dataBaseContext.AudioLinks
+                    .Where(x => x.AudioCollectionId == request.AudioCollectionId)
+                    .Select(x => x.AudioId)
+                    .ToList();
+                audios = audios.Where(x => audioIds.Contains(x.Id));
+            }
+
+            if (!string.IsNullOrEmpty(request.SearchValue))
+            {
+                audios = audios.Where(x =>
                     x.Name.ToLower().Contains(request.SearchValue) ||
                     x.Description.ToLower().Contains(request.SearchValue) ||
-                    x.Owner.ToLower().Contains(request.SearchValue))
+                    x.Owner.ToLower().Contains(request.SearchValue));
+            }
+
+            var getAudioDtos = audios
                 .ToPaged(request.Page, request.Size, out var rowsCount)
                 .Select(x => new GetAudioDto(x.Id, x.Owner, x.Name, x.Description,
                     x.ImageUrl, x.IsPremium, x.FileUrl128, x.FileUrl320))

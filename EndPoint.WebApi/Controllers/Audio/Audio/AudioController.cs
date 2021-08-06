@@ -13,7 +13,6 @@ namespace EndPoint.WebApi.Controllers.Audio.Audio
     public class AudioController : ControllerBase
     {
         private readonly IAudioFacad audioFacad;
-
         public AudioController(IAudioFacad audioFacad) =>
             this.audioFacad = audioFacad;
 
@@ -67,7 +66,7 @@ namespace EndPoint.WebApi.Controllers.Audio.Audio
         [HttpGet]
         public ActionResult<ResultDto<ResultGetAudioDto>> Get([FromBody] GetAudioDto getDto)
         {
-            var request = new GetAudioRequest(getDto.Page, getDto.Size, getDto.SearchValue);
+            var request = new GetAudioRequest(getDto.Page, getDto.Size, getDto.SearchValue, getDto.AudioCollectionId);
             return audioFacad.GetAudioService.Execute(request);
         }
     }

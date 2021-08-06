@@ -16,4 +16,8 @@
     <ProjectReference Include="..\SedaBazi.Persistence\SedaBazi.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\Audio\AudioLink\" />
+  </ItemGroup>
+
 </Project>

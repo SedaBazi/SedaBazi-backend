@@ -13,6 +13,8 @@ namespace SedaBazi.Application.Interfaces.Contexts
 
         DbSet<AudioCollection> AudioCollections { get; set; }
 
+        DbSet<Audio> Audios { get; set; }
+
         DbSet<Management> Managements { get; set; }
 
         int SaveChanges(bool acceptAllChangesOnSuccess);

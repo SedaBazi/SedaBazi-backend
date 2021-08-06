@@ -72,6 +72,29 @@ namespace SedaBazi.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Audios",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Owner = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsPremium = table.Column<bool>(type: "bit", nullable: false),
+                    FileUrl128 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FileUrl320 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InsertTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeleteTime = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Audios", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Managements",
                 columns: table => new
                 {
@@ -254,6 +277,9 @@ namespace SedaBazi.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "AudioCollections");
+
+            migrationBuilder.DropTable(
+                name: "Audios");
 
             migrationBuilder.DropTable(
                 name: "Managements");

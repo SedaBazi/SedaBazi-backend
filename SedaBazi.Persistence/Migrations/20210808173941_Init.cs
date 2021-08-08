@@ -72,6 +72,25 @@ namespace SedaBazi.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AudioLinks",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    User = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AudioId = table.Column<long>(type: "bigint", nullable: false),
+                    AudioCollectionId = table.Column<long>(type: "bigint", nullable: false),
+                    InsertTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeleteTime = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AudioLinks", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Audios",
                 columns: table => new
                 {
@@ -277,6 +296,9 @@ namespace SedaBazi.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "AudioCollections");
+
+            migrationBuilder.DropTable(
+                name: "AudioLinks");
 
             migrationBuilder.DropTable(
                 name: "Audios");

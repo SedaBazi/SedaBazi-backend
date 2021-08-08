@@ -4,6 +4,8 @@
     {
         public long Id { get; }
 
+        public long LinkId { get; set; }
+
         public string Owner { get; }
 
         public string Name { get; }
@@ -12,11 +14,11 @@
 
         public string ImageUrl { get; }
 
-        public bool IsPremium { get; set; } = false;
+        public bool IsPremium { get; } = false;
 
-        public string FileUrl128 { get; set; }
+        public string FileUrl128 { get; }
 
-        public string FileUrl320 { get; set; }
+        public string FileUrl320 { get; }
 
         public GetAudioDto(long id, string owner, string name, string description,
             string imageUrl, bool isPremium, string fileUrl128, string fileUrl320)

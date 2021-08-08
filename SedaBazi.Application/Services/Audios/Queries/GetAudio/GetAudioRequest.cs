@@ -8,11 +8,14 @@
 
         public string SearchValue { get; }
 
-        public GetAudioRequest(int page, int size, string searchValue)
+        public long? AudioCollectionId { get; }
+
+        public GetAudioRequest(int page, int size, string searchValue, long? audioCollectionId)
         {
             Page = page;
             Size = size;
             SearchValue = searchValue;
+            AudioCollectionId = audioCollectionId;
         }
     }
 }

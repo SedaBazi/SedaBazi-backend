@@ -15,12 +15,17 @@ namespace SedaBazi.Application.Services.Publisher.Queries.GetPublisher
         {
             var publisher = dataBaseContext.Users.AsQueryable();
 
+            publisher = publisher.Where(x => x.IsPublisher);
+
+            if (!string.IsNullOrEmpty(request.SearchValue))
+            {
+                publisher = publisher
+                    .Where(x => x.FirstName.ToLower().Contains(request.SearchValue) ||
+                        x.LastName.ToLower().Contains(request.SearchValue) ||
+                        x.Email.ToLower().Contains(request.SearchValue));
+            }
+
             var getPublisherDtos = publisher
-                .Where(x => x.IsPublisher && (
-                    string.IsNullOrEmpty(request.SearchValue) ||
-                    x.FirstName.ToLower().Contains(request.SearchValue) || 
-                    x.LastName.ToLower().Contains(request.SearchValue) || 
-                    x.Email.ToLower().Contains(request.SearchValue)))
                 .Select(x => new GetPublisherDto(x.FirstName, x.LastName, x.Email))
                 .ToList();
 

@@ -29,6 +29,18 @@ namespace SedaBazi.Application.Services.Audios.Commands.DeleteAudioCollection
             audioCollection.IsDeleted = true;
             audioCollection.DeleteTime = DateTime.Now;
 
+            foreach (var management in dataBaseContext.Managements.Where(x => x.AudioCollectionId == request.Id).ToList())
+            {
+                management.IsDeleted = true;
+                management.DeleteTime = DateTime.Now;
+            }
+
+            foreach (var audioLink in dataBaseContext.AudioLinks.Where(x => x.AudioCollectionId == request.Id).ToList())
+            {
+                audioLink.IsDeleted = true;
+                audioLink.DeleteTime = DateTime.Now;
+            }
+
             dataBaseContext.SaveChanges();
 
             return new ResultDto(true, "Audio Collection deleted successfully.");

@@ -26,6 +26,11 @@ namespace SedaBazi.Application.Services.Audios.Queries.GetAudioCollection
             }
 
             var getAudioCollectionDtos = audioCollections
+                .Where(x => string.IsNullOrEmpty(request.SearchValue) ||
+                    x.Name.ToLower().Contains(request.SearchValue) ||
+                    x.Description.ToLower().Contains(request.SearchValue) ||
+                    x.Owner.ToLower().Contains(request.SearchValue) ||
+                    x.Type.ToLower().Contains(request.SearchValue))
                 .ToPaged(request.Page, request.Size, out var rowsCount)
                 .Select(x => new GetAudioCollectionDto(x.Id, x.Owner, x.Name, x.Description, x.ImageUrl, x.Type))
                 .ToList();

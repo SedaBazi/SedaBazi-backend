@@ -14,7 +14,7 @@
 
         public string Type { get; }
 
-        public GetAudioCollectionDto(long id, string owner, string name, 
+        public GetAudioCollectionDto(long id, string owner, string name,
             string description, string imageUrl, string type)
         {
             Id = id;

@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace SedaBazi.Application.Services.Audios.Commands.AddAudioLink
 {
-    public class AddAudioLinkService
+    public class AddAudioLinkService : IAddAudioLinkService
     {
         private readonly IDataBaseContext dataBaseContext;
 

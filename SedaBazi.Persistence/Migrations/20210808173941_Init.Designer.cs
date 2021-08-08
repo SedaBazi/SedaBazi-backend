@@ -10,7 +10,7 @@ using SedaBazi.Persistence.Contexts;
 namespace SedaBazi.Persistence.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20210806122127_Init")]
+    [Migration("20210808173941_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -239,6 +239,40 @@ namespace SedaBazi.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AudioCollections");
+                });
+
+            modelBuilder.Entity("SedaBazi.Domain.Entities.Audios.AudioLink", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("AudioCollectionId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("AudioId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeleteTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("InsertTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("UpdateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("User")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AudioLinks");
                 });
 
             modelBuilder.Entity("SedaBazi.Domain.Entities.Managements.Management", b =>

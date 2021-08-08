@@ -239,6 +239,40 @@ namespace SedaBazi.Persistence.Migrations
                     b.ToTable("AudioCollections");
                 });
 
+            modelBuilder.Entity("SedaBazi.Domain.Entities.Audios.AudioLink", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("AudioCollectionId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("AudioId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeleteTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("InsertTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("UpdateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("User")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AudioLinks");
+                });
+
             modelBuilder.Entity("SedaBazi.Domain.Entities.Managements.Management", b =>
                 {
                     b.Property<long>("Id")

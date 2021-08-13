@@ -25,7 +25,7 @@ namespace EndPoint.WebApi.Controllers.Authentications.Profile
                 return new ResultDto(false, "No user available.");
             }
 
-            var request = new EditProfileRequest(editDto.FirstName, editDto.LastName, owner);
+            var request = new EditProfileRequest(owner, editDto.PhoneNumber, editDto.FirstName, editDto.LastName);
 
             return userFacad.EditProfileService.Execute(request);
         }

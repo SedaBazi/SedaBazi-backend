@@ -15,7 +15,8 @@ namespace SedaBazi.Application.Services.Users.Queries.GetProfile
         {
             var user = userManager.FindByNameAsync(request.Email).Result;
 
-            var result = new GetProfileDto(user.Email, user.FirstName, user.LastName, user.IsPublisher, user.IsPremium);
+            var result = new GetProfileDto(user.Email, user.PhoneNumber, 
+                user.FirstName, user.LastName, user.IsPublisher, user.IsPremium);
 
             return new ResultDto<GetProfileDto>(true, "Profile returned successfully.", result);
         }

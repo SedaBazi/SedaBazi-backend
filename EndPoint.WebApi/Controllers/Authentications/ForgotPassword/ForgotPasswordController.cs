@@ -17,7 +17,18 @@ namespace EndPoint.WebApi.Controllers.Authentications.ForgotPassword
         [HttpPost]
         public ActionResult<ResultDto> Post([FromBody] ForgotPasswordDto forgotPasswordDto)
         {
-            var request = new ForgotPasswordRequest(forgotPasswordDto.Email);
+            if (forgotPasswordDto.SendByEmail && string.IsNullOrEmpty(forgotPasswordDto.Email))
+            {
+                return new ResultDto(false, "The Email field is required.");
+            }
+
+            if (!forgotPasswordDto.SendByEmail && string.IsNullOrEmpty(forgotPasswordDto.PhoneNumber))
+            {
+                return new ResultDto(false, "The Phone field is required.");
+            }
+
+            var request = new ForgotPasswordRequest(forgotPasswordDto.Email, 
+                forgotPasswordDto.PhoneNumber, forgotPasswordDto.SendByEmail);
             return userFacad.ForgotPasswordService.Execute(request);
         }
     }

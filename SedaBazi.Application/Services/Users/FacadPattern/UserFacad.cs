@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using SedaBazi.Application.Interfaces.Contexts;
 using SedaBazi.Application.Interfaces.FacadPatterns;
 using SedaBazi.Application.Services.Email;
+using SedaBazi.Application.Services.Sms;
 using SedaBazi.Application.Services.Users.Commands.EditProfile;
 using SedaBazi.Application.Services.Users.Commands.ForgotPassword;
 using SedaBazi.Application.Services.Users.Commands.Login;
@@ -16,8 +18,12 @@ namespace SedaBazi.Application.Services.Users.FacadPattern
         private readonly UserManager<User> userManager;
 
         private readonly SignInManager<User> signInManager;
-        
+
         private readonly IEmailService emailService;
+
+        private readonly ISmsService smsService;
+
+        private readonly IDataBaseContext dataBaseContext;
 
         private IRegisterService registerService;
         
@@ -31,11 +37,14 @@ namespace SedaBazi.Application.Services.Users.FacadPattern
         
         private IGetProfileService getProfileService;
 
-        public UserFacad(UserManager<User> userManager, SignInManager<User> signInManager, IEmailService emailService) 
+        public UserFacad(UserManager<User> userManager, SignInManager<User> signInManager,
+            IEmailService emailService, ISmsService smsService, IDataBaseContext dataBaseContext) 
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.emailService = emailService;
+            this.smsService = smsService;
+            this.dataBaseContext = dataBaseContext;
         }
 
         public IRegisterService RegisterService
@@ -66,7 +75,7 @@ namespace SedaBazi.Application.Services.Users.FacadPattern
         {
             get
             {
-                return forgotPasswordService ??= new ForgotPasswordService(userManager, emailService);
+                return forgotPasswordService ??= new ForgotPasswordService(userManager, emailService, smsService, dataBaseContext);
             }
         }
 

@@ -18,6 +18,7 @@ namespace SedaBazi.Application.Services.Users.Commands.EditProfile
 
             user.FirstName = request.FirstName;
             user.LastName = request.LastName;
+            user.PhoneNumber = request.PhoneNumber;
 
             var result = userManager.UpdateAsync(user).Result;
 

@@ -11,6 +11,7 @@ using SedaBazi.Application.Services.Audios.FacadPattern;
 using SedaBazi.Application.Services.Email;
 using SedaBazi.Application.Services.Managements.FacadPattern;
 using SedaBazi.Application.Services.Publisher.FacadPattern;
+using SedaBazi.Application.Services.Sms;
 using SedaBazi.Application.Services.Users.FacadPattern;
 using SedaBazi.Domain.Entities.Users;
 using SedaBazi.Persistence.Contexts;
@@ -36,6 +37,7 @@ namespace EndPoint.WebApi
             services.AddScoped<IPublisherFacad, PublisherFacad>();
 
             services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<ISmsService, SmsService>();
             services.AddScoped<IDataBaseContext, DataBaseContext>();
 
             services.AddIdentity<User, IdentityRole>()

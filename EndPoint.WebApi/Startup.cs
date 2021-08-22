@@ -10,6 +10,7 @@ using SedaBazi.Application.Interfaces.FacadPatterns;
 using SedaBazi.Application.Services.Audios.FacadPattern;
 using SedaBazi.Application.Services.Email;
 using SedaBazi.Application.Services.Managements.FacadPattern;
+using SedaBazi.Application.Services.Payments.FacadPattern;
 using SedaBazi.Application.Services.Publisher.FacadPattern;
 using SedaBazi.Application.Services.Sms;
 using SedaBazi.Application.Services.Users.FacadPattern;
@@ -35,7 +36,7 @@ namespace EndPoint.WebApi
             services.AddScoped<IAudioFacad, AudioFacad>();
             services.AddScoped<IManagementFacad, ManagementFacad>();
             services.AddScoped<IPublisherFacad, PublisherFacad>();
-
+            services.AddScoped<IPaymentFacad, PaymentFacad>();
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<ISmsService, SmsService>();
             services.AddScoped<IDataBaseContext, DataBaseContext>();

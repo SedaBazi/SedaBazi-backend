@@ -13,6 +13,7 @@ namespace EndPoint.WebApi.Controllers.Audio.Audio
     public class AudioController : ControllerBase
     {
         private readonly IAudioFacad audioFacad;
+
         public AudioController(IAudioFacad audioFacad) =>
             this.audioFacad = audioFacad;
 

@@ -15,7 +15,7 @@ namespace EndPoint.WebApi.Controllers.Pay
         public ValidationController(IPaymentFacad paymentFacad) =>
             this.paymentFacad = paymentFacad;
 
-        public ActionResult<ResultDto> Verify(Guid guid, string authority, string status)
+        public ActionResult<ResultDto> Verify(Guid guid, string authority)
         {
             var username = User.Identity.Name;
 

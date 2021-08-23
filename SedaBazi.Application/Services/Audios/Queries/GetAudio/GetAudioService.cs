@@ -18,6 +18,13 @@ namespace SedaBazi.Application.Services.Audios.Queries.GetAudio
             var audios = dataBaseContext.Audios.AsQueryable();
             var linkIdByAudioId = new Dictionary<long, long>();
 
+            var user = dataBaseContext.Users.FirstOrDefault(x => x.UserName == request.Owner);
+
+            if (user == null || !user.IsPremium)
+            {
+                audios = audios.Where(x => !x.IsPremium);
+            }
+
             if (request.AudioCollectionId != null)
             {
                 linkIdByAudioId = dataBaseContext.AudioLinks

@@ -10,8 +10,11 @@
 
         public long? AudioCollectionId { get; }
 
-        public GetAudioRequest(int page, int size, string searchValue, long? audioCollectionId)
+        public string Owner { get; }
+
+        public GetAudioRequest(string owner, int page, int size, string searchValue, long? audioCollectionId)
         {
+            Owner = owner;
             Page = page;
             Size = size;
             SearchValue = searchValue;

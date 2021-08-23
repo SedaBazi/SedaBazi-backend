@@ -67,7 +67,7 @@ namespace EndPoint.WebApi.Controllers.Audio.Audio
         [HttpGet]
         public ActionResult<ResultDto<ResultGetAudioDto>> Get([FromBody] GetAudioDto getDto)
         {
-            var request = new GetAudioRequest(getDto.Page, getDto.Size, getDto.SearchValue, getDto.AudioCollectionId);
+            var request = new GetAudioRequest(User.Identity.Name, getDto.Page, getDto.Size, getDto.SearchValue, getDto.AudioCollectionId);
             return audioFacad.GetAudioService.Execute(request);
         }
     }
